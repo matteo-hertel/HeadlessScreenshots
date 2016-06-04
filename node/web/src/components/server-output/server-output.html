@@ -123,7 +123,7 @@
             },
             generateImage: function(path) {
                 var a = document.createElement("a");
-                a.href = path.replace(/web\/polymer/, "").replace(/saved\./, "");
+                a.href = path.replace(/(web\/\b)?(polymer\/\b)?/g, "").replace(/saved\./, "");
                 var img = document.createElement("iron-image");
                 img.style = "background-color: lightgray;";
                 img.sizing = "contain";

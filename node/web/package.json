@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "vulcanize index.html > ./build/index.html"
+  },
+}
