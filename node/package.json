@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "phantom": "^2.1.1",
+        "nodejs-websocket": "^1.5.0"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "hapi": "^13.0.0",
+    "nodejs-websocket": "^1.5.0",
+    "phantom": "^2.1.1",
+    "phantomjs": "^2.1.7"
+  },
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "author": "Matteo Hertel <info@matteohertel.com> (http://matteohertel.com/)",
+  "license": "MIT"
+}
