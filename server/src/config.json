@@ -1,0 +1,7 @@
+[{
+    // App 1 
+    "uid": "nodews",
+    "append": true,
+    "watch": true,
+    "script": "./src/ws.js"
+}]

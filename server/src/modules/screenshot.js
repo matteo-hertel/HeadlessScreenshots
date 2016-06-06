@@ -24,18 +24,21 @@ exports.screenshot = function(url, output, dimensions) {
         }
         if (err) {
             eventEmitter.emit("error", {
+                key: dimensions.replace(/\*/g, ""),
                 status: "error",
                 message: err
             });
         }
         if (stdout) {
             eventEmitter.emit("success", {
+                key: dimensions.replace(/\*/g, ""),
                 status: "success",
                 message: stdout
             });
         }
         if (stderr) {
             eventEmitter.emit("stderror", {
+                key: dimensions.replace(/\*/g, ""),
                 status: "stderror",
                 message: stderr
             });
