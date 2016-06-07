@@ -2,7 +2,6 @@
     "dependencies": {
         "hapi": "^13.0.0",
         "nodejs-websocket": "^1.5.0",
-        "phantom": "^2.1.1",
         "phantomjs": "^2.1.7",
         "nodejs-websocket": "^1.5.0"
     },
