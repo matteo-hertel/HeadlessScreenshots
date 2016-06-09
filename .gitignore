@@ -36,3 +36,4 @@ bower_components
 #Polymer build
 build
 build.html
+production/
