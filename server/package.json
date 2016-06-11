@@ -6,7 +6,7 @@
         "nodejs-websocket": "^1.5.0"
     },
     "scripts": {
-        "start": "forever ./src/config.json"
+        "start": "forever ./app/config.json"
     },
     "author": "Matteo Hertel <info@matteohertel.com> (http://matteohertel.com/)",
     "license": "MIT"

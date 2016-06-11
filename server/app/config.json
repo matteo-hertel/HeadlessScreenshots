@@ -1,0 +1,14 @@
+[{
+    // App 1 
+    "uid": "nodews",
+    "append": true,
+    "watch": true,
+    "script": "./backend/ws.js"
+},
+{
+    // App 2
+    "uid": "screenshots",
+    "append": true,
+    "watch": true,
+    "script": "cd ./frontend && npm run build && npm run serve"
+}]
