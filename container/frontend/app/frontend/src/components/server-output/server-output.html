@@ -1,0 +1,148 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../bower_components/paper-fab/paper-fab.html">
+
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/iron-image/iron-image.html">
+
+<link rel="import" href="./../request-dialog/request-dialog.html">
+<dom-module id="server-output">
+    <template>
+
+        <style>
+            paper-card {
+                display: inline-block;
+                min-width: 48%;
+                margin: 5px;
+                --paper-card-header-image: {
+                    height: 200px;
+                }
+            }
+
+            paper-card h2 {
+                margin: 4px;
+                font-weight: normal;
+            }
+
+            paper-card p {
+                margin: 4px;
+                color: #999;
+            }
+
+            paper-fab {
+                position: fixed;
+                right: 24px;
+                bottom: 24px;
+                --paper-fab-background: #EF5458;
+                --paper-fab-keyboard-focus-background: #DF4448;
+            }
+
+            iron-image {
+                width: 100%;
+                height: 350px;
+            }
+
+            @media (max-width: 719px) {
+                paper-card {
+                    display: block;
+                }
+            }
+        </style>
+        <div class="cards">
+
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'server-output',
+            listeners: {
+                incomingData: "processData",
+                newProcess: "clearDeck"
+            },
+            processData: function(e) {
+                try {
+                    var data = e.detail.data.serverData;
+                } catch (e) {
+                    console.warn(e);
+                    return;
+                }
+                switch (data.status) {
+                    case "initializing":
+                        this.createCard(data.key)
+                        break;
+                    case "success":
+                        this.updateCard(data)
+                        break;
+
+
+                }
+            },
+            clearDeck: function() {
+                var cards = this.querySelector(".cards");
+                while (cards.firstChild) {
+                    cards.removeChild(cards.firstChild);
+                }
+            },
+            createCard: function(id) {
+                var card = document.createElement("paper-card");
+                card.heading = id;
+                card.id = id;
+                this.setDefatultCardView(card);
+
+                Polymer.dom(this.querySelector(".cards")).appendChild(card);
+
+            },
+            updateCard: function(data) {
+                var img = this.generateImage(data.message);
+                var content = document.getElementById(data.key).querySelector(".card-content");
+                while (content.firstChild) {
+                    content.removeChild(content.firstChild);
+                }
+                this.buildFinalCard(content, img);
+            },
+            buildFinalCard: function(card, image) {
+                if (!card || !image) {
+                    return;
+                }
+                var content = document.createElement("div");
+                var actions = document.createElement("div");
+                var btn = document.createElement("a");
+                btn.href = image.src;
+                btn.textContent = "Download";
+                btn.download = card.id;
+                content.classList.add("card-content");
+                actions.classList.add("card-actions");
+                Polymer.dom(actions).appendChild(btn);
+
+
+                Polymer.dom(content).appendChild(image);
+                Polymer.dom(card).appendChild(content).appendChild(actions)
+            },
+            generateImage: function(path) {
+                var a = document.createElement("a");
+                a.href = path.replace(/(web\/\b)?(polymer\/\b)?/g, "").replace(/saved\./, "");
+                var img = document.createElement("iron-image");
+                img.style = "background-color: lightgray;";
+                img.sizing = "contain";
+                img.fade = true;
+                img.src = a.href;
+                return img;
+            },
+            setDefatultCardView: function(card) {
+                if (card.nodeName !== "PAPER-CARD") {
+                    return;
+                }
+                var spinner = document.createElement("paper-spinner");
+                spinner.active = true;
+                var container = document.createElement("div");
+                container.classList.add("card-content");
+                container.appendChild(spinner);
+                Polymer.dom(card).appendChild(container);
+            }
+
+        });
+    </script>
+</dom-module>

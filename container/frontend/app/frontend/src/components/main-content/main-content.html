@@ -1,0 +1,126 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../../bower_components/neon-animation/animations/scale-down-animation.html">
+<link rel="import" href="../../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="./../request-dialog/request-dialog.html">
+<link rel="import" href="./../server-output/server-output.html">
+<dom-module id="main-content">
+    <template>
+
+        <style>
+            app-header {
+                color: #fff;
+                background-color: #03A9F4;
+                height: 60px;
+            }
+
+            app-toolbar {
+                height: 60px;
+            }
+
+            [condensed-title] {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 90px;
+                /* The difference in font size is used to calculate the scale of the title in the transition. */
+                font-size: 16px;
+            }
+
+            [title] {
+                position: absolute;
+                top: -120px;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 120px;
+                -webkit-transform-origin: center top !important;
+                transform-origin: center top !important;
+                /* The difference in font size is used to calculate the scale of the title in the transition. */
+                font-size: 32px;
+            }
+
+            .content {
+                display: block;
+                max-width: 70%;
+                margin: auto;
+            }
+
+            .container {}
+
+            paper-fab {
+                position: fixed;
+                right: 24px;
+                bottom: 24px;
+                --paper-fab-background: #EF5458;
+                --paper-fab-keyboard-focus-background: #DF4448;
+            }
+
+            @media (max-width: 860px) {
+                app-toolbar {
+                    height: 60px;
+                }
+            }
+
+            @media (max-width: 550px) {
+                .content {
+                    margin: 5px;
+                }
+            }
+        </style>
+
+        <!-- main panel -->
+        <app-header-layout>
+
+            <app-header effects="resize-title" condenses fixed shadow>
+                <app-toolbar class="top-toolbar">
+                    <content></content>
+                    <p>
+                        Screenshots
+                    </p>
+
+                    <div condensed-title></div>
+                </app-toolbar>
+                <app-toolbar class="bottom-toolbar">
+                    <div title></div>
+                </app-toolbar>
+            </app-header>
+
+            <div class="content">
+                <paper-fab icon="icons:create" on-tap="toggleDialog"></paper-fab>
+                <server-output></server-output>
+                <request-dialog></request-dialog>
+
+            </div>
+
+        </app-header-layout>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'main-content',
+            toggleDialog: function() {
+
+                this.querySelector("request-dialog").fire("toggleModal");
+            }
+
+        });
+    </script>
+</dom-module>
