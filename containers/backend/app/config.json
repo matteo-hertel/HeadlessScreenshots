@@ -1,8 +1,0 @@
-[{
-    "uid": "nodews",
-    "append": true,
-    "watch": true,
-    "script": "./app/ws.js",
-     "o": "./app/logs/out.log",
-     "e" :  "./app/logs/err.log" 
-}]
