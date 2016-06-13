@@ -120,7 +120,7 @@ WSConnection.prototype.triggerProcess = function(data) {
             status: "initializing",
             message: "started"
         });
-        screen.screenshot(data.url, "./web/output/" + url.hostname + "/" + i.replace(/\*/g, "") + ".png", i);
+        screen.screenshot(data.url, "./output/" + url.hostname + "/" + i.replace(/\*/g, "") + ".png", i);
     }
 };
 

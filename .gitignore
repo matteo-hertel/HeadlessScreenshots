@@ -33,6 +33,9 @@ node_modules
 #Bower
 bower_components
 
+#output
+output
+
 #Polymer build
 build
 build.html
