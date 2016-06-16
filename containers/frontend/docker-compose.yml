@@ -1,6 +1,6 @@
-node:
+frontend:
   build: .
   ports:
-    - "8001:8001"
-  volumes:
-   - "./src/output:/usr/src/app/output"
+    - "80:80"
+  # volumes:
+  #  - "./src/output:/usr/src/app/output"

@@ -1,7 +1,0 @@
-node:
-  build: .
-  ports:
-    - "8001:8001"
-  volumes:
-   - "./app/output:/usr/src/app/output"
-   - "./app/logs:/usr/src/app/logs"
