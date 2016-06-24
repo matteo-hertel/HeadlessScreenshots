@@ -1,0 +1,14 @@
+backend:
+  build: ./backend
+  ports:
+    - "8001:8001"
+  volumes:
+   - "./output:/usr/src/app/output"
+   - "./backend/logs:/usr/src/app/logs"
+
+frontend:
+  build: ./frontend
+  ports:
+    - "80:80"
+  volumes:
+   - "./output:/usr/src/app/app/production/output"

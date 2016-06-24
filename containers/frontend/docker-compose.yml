@@ -1,6 +1,0 @@
-frontend:
-  build: .
-  ports:
-    - "80:80"
-  # volumes:
-  #  - "./src/output:/usr/src/app/output"
